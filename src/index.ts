@@ -5,6 +5,20 @@ const app = express();
 app.use(cors())
 app.use(json())
 
+app.get("/request", async(req, res) => {
+  try{
+    const response = await prismaDb.request.findMany();
+    if(!response){
+      return res.status(500).json({message:"No data found!"})
+    }
+    return res.status(201).json({response,message:"Data find Successfully!"})
+  }catch(e){
+    return res.status(500).json("Server error!")
+  }
+  
+
+ });
+
 app.post("/request", async (req, res) => {
   try {
     const { type, payload, status } = await req.body;
@@ -27,7 +41,7 @@ app.post("/request", async (req, res) => {
 });
 app.get("/request:id", (req,res) => { });
 app.patch("/request/:id/status", async (req, res) => { })
-app.get("/request", (req, res) => { });
+
 
 app.listen(3000, () => {
   console.log("port is running on 3000")
