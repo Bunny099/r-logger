@@ -1,6 +1,25 @@
-# request_logger
+# Request Logger API
 
-To install dependencies:
+A small backend service to create requests and track their lifecycle.
+
+## Endpoints
+
+- `POST /request` – create a request  
+- `GET /request` – list all requests  
+- `GET /request/:id` – get request by id  
+- `PATCH /request/:id/status` – advance request status  
+
+## Status Flow
+- PENDING->PROCESSING->COMPLETED
+
+## Stack
+
+- Node.js
+- Express
+- Prisma
+
+
+Installation
 
 ```bash
 bun install
@@ -9,7 +28,6 @@ bun install
 To run:
 
 ```bash
-bun run index.ts
+bun run dev
 ```
 
-This project was created using `bun init` in bun v1.3.5. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
